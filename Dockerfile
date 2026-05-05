@@ -1,12 +1,10 @@
-FROM clojure:temurin-21-lein AS build
+FROM python:3.13-slim
 WORKDIR /app
-COPY project.clj .
-RUN lein deps
-COPY src src
-RUN lein uberjar
 
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/app.jar app.jar
+RUN pip install --no-cache-dir litestar granian
+
+COPY src ./src
+ENV PYTHONPATH=/app/src
+
 EXPOSE 3000
-CMD ["java", "-jar", "app.jar"]
+CMD ["granian", "--interface", "asgi", "--host", "0.0.0.0", "--port", "3000", "rinha_backend_2026.app:app"]

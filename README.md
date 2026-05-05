@@ -4,17 +4,11 @@ My version of Rinha Backend 2026
 ## Running
 
 ```bash
-lein run
+pip install litestar granian
+PYTHONPATH=src granian --interface asgi --host 0.0.0.0 --port 3000 rinha_backend_2026.app:app
 ```
 
 The server starts on port 3000.
-
-## Building
-
-```bash
-lein uberjar
-java -jar target/app.jar
-```
 
 ## Endpoints
 
