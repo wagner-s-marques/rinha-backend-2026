@@ -1,6 +1,7 @@
 from litestar import Litestar, MediaType, get, post
 
 from fraud_score import score
+from models import FraudScoreRequest
 
 
 @get("/status", status_code=204)
@@ -14,7 +15,7 @@ async def ready() -> str:
 
 
 @post("/fraud-score")
-async def fraud_score(data: dict) -> dict:
+async def fraud_score(data: FraudScoreRequest) -> dict:
     return score(data)
 
 
