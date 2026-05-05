@@ -1,6 +1,6 @@
 from litestar import Litestar, MediaType, get, post
 
-from rinha_backend_2026.controllers.fraud_score import score
+from fraud_score import score
 
 
 @get("/status", status_code=204)
